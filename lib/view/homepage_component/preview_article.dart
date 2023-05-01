@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mind_mate_app/view/article_page.dart';
 
+import '../detail_article.dart';
 import '../test_card.dart';
 
 class PreviewArticle extends StatefulWidget {
@@ -53,11 +54,11 @@ class _PreviewArticleState extends State<PreviewArticle>
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyCustomUI(),
-                        ));
+                    Navigator.of(context).push(
+                      MyFadeRoute(
+                        route: ArticlePage(),
+                      ),
+                    );
                   },
                   child: Text(
                     'See More',
@@ -100,7 +101,7 @@ class _PreviewArticleState extends State<PreviewArticle>
       onTap: () {
         Navigator.of(context).push(
           MyFadeRoute(
-            route: ArticlePage(),
+            route: DetailArticlePage(),
           ),
         );
       },

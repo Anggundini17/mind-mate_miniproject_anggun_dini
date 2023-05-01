@@ -13,7 +13,7 @@ class DetailPsikolog extends StatelessWidget {
             const CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(
-                  'https://f.ptcdn.info/298/073/000/qs7t6ibhscUkbPBmH8t-o.jpg'),
+                  'https://i.pinimg.com/564x/ab/5a/e5/ab5ae5ea7ce8ee34e548a52f5adcde41.jpg'),
             ),
             sizedBox1(),
             const Text(
