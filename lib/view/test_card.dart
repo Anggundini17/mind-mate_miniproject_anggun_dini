@@ -382,3 +382,31 @@ class RouteWhereYouGo extends StatelessWidget {
     );
   }
 }
+
+class FadeRoute extends PageRouteBuilder {
+  final Widget route;
+  final RouteSettings settings;
+
+  FadeRoute({
+    required this.route,
+    required this.settings,
+  }) : super(
+            transitionDuration: Duration(milliseconds: 200),
+            settings: settings,
+            pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) =>
+                route,
+            transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget route,
+            ) =>
+                FadeTransition(
+                  opacity: animation,
+                  child: route,
+                ));
+}

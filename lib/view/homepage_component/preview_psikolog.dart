@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mind_mate_app/view/consult.dart';
 import 'package:mind_mate_app/view/detail_psikolog.dart';
 import 'package:mind_mate_app/view/psikolog_page.dart';
 import 'package:mind_mate_app/view/test_card.dart';
@@ -45,33 +46,32 @@ class PreviewPsikolog extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        SizedBox(
-          height: 415,
-          child: ListView(
-            children: [
-              cardPsikolog(
-                context,
-                'Jefferey S.Psi, M.Psi',
-                'Psikolog Anak',
-                'Anak',
-                '7 Tahun',
-              ),
-              cardPsikolog(
-                context,
-                'Mark Lee S.Psi, M.Psi',
-                'Psikolog Klinis',
-                'Stress,Gangguan Kecemasan',
-                '7 Tahun',
-              ),
-              cardPsikolog(
-                context,
-                'Hendery Wijaya S.Psi, M.Psi',
-                'Psikolog Klinis',
-                'Anxiety',
-                '7 Tahun',
-              )
-            ],
-          ),
+        ListView(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            cardPsikolog(
+              context,
+              'Jefferey S.Psi, M.Psi',
+              'Psikolog Anak',
+              'Anak',
+              '7 Tahun',
+            ),
+            cardPsikolog(
+              context,
+              'Mark Lee S.Psi, M.Psi',
+              'Psikolog Klinis',
+              'Stress,Gangguan Kecemasan',
+              '7 Tahun',
+            ),
+            cardPsikolog(
+              context,
+              'Hendery Wijaya S.Psi, M.Psi',
+              'Psikolog Klinis',
+              'Anxiety',
+              '7 Tahun',
+            )
+          ],
         )
       ],
     );
@@ -135,21 +135,29 @@ class PreviewPsikolog extends StatelessWidget {
                   )),
                 ],
               ),
-              trailing: consultButton()),
+              trailing: Container(child: consultButton(context))),
         ),
       ),
     );
   }
 
-  ElevatedButton consultButton() {
+  ElevatedButton consultButton(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
               Color.fromRGBO(180, 235, 237, 1)),
           shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MyFadeRoute(
+              route: ConsultationPage(
+                  // title: 'Consultation Form',
+                  ),
+            ),
+          );
+        },
         child: Text(
           'Consult',
           style: TextStyle(

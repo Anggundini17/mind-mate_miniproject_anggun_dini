@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mind_mate_app/view_model/article_provider.dart';
+import 'package:provider/provider.dart';
 
 class ArticlePage extends StatefulWidget {
   const ArticlePage({super.key});
@@ -16,9 +18,13 @@ class _ArticlePageState extends State<ArticlePage>
   void initState() {
     super.initState();
 
+    Future.microtask(
+      () => Provider.of<MyArticleData>(context, listen: false).getArticleList(),
+    );
+
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
 
     _animation = Tween<double>(begin: 0, end: 1)
@@ -39,7 +45,7 @@ class _ArticlePageState extends State<ArticlePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(239, 252, 252, 1),
+      backgroundColor: const Color.fromRGBO(239, 252, 252, 1),
       appBar: AppBar(
         title: Text('ARTICLE'),
       ),
@@ -53,54 +59,65 @@ class _ArticlePageState extends State<ArticlePage>
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(
-            height: 1000,
-            child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: ((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 150,
-                              width: MediaQuery.of(context).size.width * 1,
-                              child: ClipRRect(
-                                // decoration: const BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10.0),
-                                  topRight: Radius.circular(10.0),
-                                ),
-                                // ),
-                                child: Image.network(
-                                  'https://img.freepik.com/free-photo/emotional-young-woman-was-depressed-sofa_1150-15515.jpg?w=900&t=st=1682664077~exp=1682664677~hmac=bb9f7ae54a6529512fc4768bb2bd223485b14ac9a49ca3bfa382788a05a6a803',
-                                  fit: BoxFit.cover,
+          Consumer<MyArticleData>(builder: (context, provider, child) {
+            if (provider.requestState == ArticleViewState.loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (provider.requestState == ArticleViewState.loaded) {
+              final article = provider.articles;
+              return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: article.length,
+                  itemBuilder: ((context, index) {
+                    final articleData = article[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 150,
+                                width: MediaQuery.of(context).size.width * 1,
+                                child: ClipRRect(
+                                  // decoration: const BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(10.0),
+                                  ),
+                                  // ),
+                                  child: Image.network(
+                                    articleData.image,
+                                    fit: BoxFit.cover,
 
-                                  // scale: 1.7,
+                                    // scale: 1.7,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Apa sih penyebab dari Anxiety?',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  articleData.title,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('For anything'),
-                            ),
-                          ]),
-                    ),
-                  );
-                })),
-          )
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(articleData.contentPreview),
+                              ),
+                            ]),
+                      ),
+                    );
+                  }));
+            }
+            return Text('Error');
+          })
         ],
       )),
     );

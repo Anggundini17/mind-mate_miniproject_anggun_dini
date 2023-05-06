@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate_app/view/home_test.dart';
+import 'package:mind_mate_app/view/homepage_component/carousel_view.dart';
+// import 'package:mind_mate_app/view_model/article_provider.dart';
+// import 'package:provider/provider.dart';
 
 import 'homepage_component/preview_article.dart';
 import 'homepage_component/preview_psikolog.dart';
-import 'homepage_component/quotes_card.dart';
+// import 'homepage_component/quotes_card.dart';
 import 'homepage_component/top.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
@@ -21,8 +28,8 @@ class MyHomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TopWidget(),
-              HomePage(),
-              const QuotesCard(),
+              CarouselView(),
+              // const QuotesCard(),
               const PreviewPsikolog(),
               const PreviewArticle(),
             ],
