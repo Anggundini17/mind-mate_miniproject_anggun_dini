@@ -1,4 +1,4 @@
-class Psikolog {
+class PsikologMockModel {
   String name;
   String avatar;
   String education;
@@ -6,10 +6,9 @@ class Psikolog {
   String timeExperience;
   String specialist;
   String expert;
-  int idData;
-  String id;
+  int id;
 
-  Psikolog({
+  PsikologMockModel({
     required this.name,
     required this.avatar,
     required this.education,
@@ -17,11 +16,11 @@ class Psikolog {
     required this.timeExperience,
     required this.specialist,
     required this.expert,
-    required this.idData,
     required this.id,
   });
 
-  factory Psikolog.fromJson(Map<String, dynamic> json) => Psikolog(
+  factory PsikologMockModel.fromJson(Map<String, dynamic> json) =>
+      PsikologMockModel(
         name: json["name"],
         avatar: json["avatar"],
         education: json["education"],
@@ -29,7 +28,6 @@ class Psikolog {
         timeExperience: json["timeExperience"],
         specialist: json["specialist"],
         expert: json["expert"],
-        idData: json["idData"],
         id: json["id"],
       );
 
@@ -41,7 +39,6 @@ class Psikolog {
         "timeExperience": timeExperience,
         "specialist": specialist,
         "expert": expert,
-        "idData": idData,
         "id": id,
       };
 }

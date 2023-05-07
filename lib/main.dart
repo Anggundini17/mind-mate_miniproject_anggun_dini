@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mind_mate_app/models/psikolog.dart';
-import 'package:mind_mate_app/view/consult.dart';
-import 'package:mind_mate_app/view/detail_article.dart';
-import 'package:mind_mate_app/view/detail_psikolog.dart';
+
 import 'package:mind_mate_app/view/login_page.dart';
-import 'package:mind_mate_app/view/psikolog_page.dart';
+
 import 'package:mind_mate_app/view_model/article_provider.dart';
 import 'package:mind_mate_app/view_model/carouselpict_provider.dart';
+import 'package:mind_mate_app/view_model/db_manager_provider.dart';
+import 'package:mind_mate_app/view_model/psikolog_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'view/article_page.dart';
 import 'view/home.dart';
 import 'view/homepage_component/carousel_view.dart';
 import 'view/test_card.dart';
@@ -27,7 +26,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (context) => PsikologProvider(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => MyArticleData(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DatabaseManagerProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => CarouselPicture(),
@@ -35,6 +40,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'MindMate App',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
               centerTitle: true,

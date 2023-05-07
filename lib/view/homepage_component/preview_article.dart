@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate_app/models/article.dart';
-import 'package:mind_mate_app/view/article_page.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../view_model/article_provider.dart';
-import '../detail_article.dart';
+import '../article/article_page.dart';
+import '../article/detail_article.dart';
+
 import '../test_card.dart';
 
 class PreviewArticle extends StatefulWidget {
@@ -93,13 +94,18 @@ class _PreviewArticleState extends State<PreviewArticle>
               // scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final articleData = article[index];
-                return _articleCard(
-                  context,
-                  articleData.title,
-                  articleData.author,
-                  // articleData.createdAt.toString(),
-                  articleData.image,
+                return Padding(
+                  padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                  child: ArticleCard(articleData: articleData),
                 );
+                // _articleCard(
+                //   context,
+                //   articleData.title,
+                //   articleData.author,
+                //   // articleData.createdAt.toString(),
+                //   // articleData.createdAt.toString(),
+                //   articleData.image,
+                // );
               },
             );
           }
@@ -114,14 +120,15 @@ class _PreviewArticleState extends State<PreviewArticle>
     String title,
     String subtitle,
     String image,
+    // DateTime dateRelease,
   ) {
     return GestureDetector(
         onTap: () {
-          Navigator.of(context).push(
-            MyFadeRoute(
-              route: DetailArticlePage(),
-            ),
-          );
+          // Navigator.of(context).push(
+          //   MyFadeRoute(
+          //     route: DetailArticlePage(),
+          //   ),
+          // );
         },
         child: Padding(
             padding: const EdgeInsets.only(left: 25.0, right: 25.0),
@@ -163,10 +170,16 @@ class _PreviewArticleState extends State<PreviewArticle>
                       // ),
                       ListTile(
                         title: Text(title),
-                        subtitle: Text(
-                          'Ditinjau secara medis oleh $subtitle',
-                          // overflow: TextOverflow.ellipsis,
-                          // maxLines: 3,
+                        subtitle: Column(
+                          children: [
+                            Text(
+                              'Ditinjau secara medis oleh $subtitle',
+
+                              // overflow: TextOverflow.ellipsis,
+                              // maxLines: 3,
+                            ),
+                            // Text(dateRelease.toString()),
+                          ],
                         ),
                         // trailing: Text(date),
                       ),

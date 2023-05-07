@@ -11,44 +11,6 @@ enum ArticleViewState {
   error,
 }
 
-// class MyArticle with ChangeNotifier {
-//   // ArticleViewState _state = ArticleViewState.none;
-//   // ArticleViewState get state => _state;
-
-//   List<Article> _article = [];
-//   List<Article> get article => _article;
-
-//   // changeState(ArticleViewState articleState) {
-//   //   _state = articleState;
-//   //   notifyListeners();
-//   // }
-
-//   Future getAllArticle() async {
-//     // changeState(ArticleViewState.loading);
-//     print('Jefferey Ganteng!');
-//     notifyListeners();
-//     try {
-//       final articleApi = ArticleAPI();
-//       final article = await articleApi.getArticle();
-//       _article = article;
-//       notifyListeners();
-//       // changeState(ArticleViewState.loaded);
-
-//     } catch (e) {
-//       notifyListeners();
-//       // changeState(ArticleViewState.error);
-//     }
-//     print(_article);
-//   }
-
-//   Future<void> getArticle() async {
-//     final articleApi = ArticleAPI();
-//     final article = await articleApi.getArticle();
-//     _article = article;
-//     notifyListeners();
-//   }
-// }
-
 class MyArticleData with ChangeNotifier {
   List<Article> _articles = [];
   List<Article> get articles => _articles;
@@ -70,7 +32,7 @@ class MyArticleData with ChangeNotifier {
       _articles = result;
       _requestState = ArticleViewState.loaded;
       notifyListeners();
-      print(_articles.length);
+      print('Data Artikel : ${_articles.length}');
     } catch (e) {
       _requestState = ArticleViewState.error;
       _message = 'Error: $e';

@@ -11,7 +11,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(239, 252, 252, 1),
+      backgroundColor: const Color.fromRGBO(239, 252, 252, 1),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
               padding:
                   const EdgeInsets.only(right: 25.0, left: 25.0, bottom: 15.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: 'Enter your username',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
               padding:
                   const EdgeInsets.only(right: 25.0, left: 25.0, bottom: 15.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: 'Enter your email',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               padding:
                   const EdgeInsets.only(right: 25.0, left: 25.0, bottom: 15.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: 'Enter your password',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(

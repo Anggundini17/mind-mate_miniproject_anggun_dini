@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate_app/view/consult.dart';
-import 'package:mind_mate_app/view/detail_psikolog.dart';
-import 'package:mind_mate_app/view/psikolog_page.dart';
-import 'package:mind_mate_app/view/test_card.dart';
 
-class PreviewPsikolog extends StatelessWidget {
+import 'package:mind_mate_app/view/test_card.dart';
+import 'package:mind_mate_app/view_model/psikolog_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../psikolog/detail_psikolog.dart';
+import '../psikolog/psikolog_page.dart';
+
+class PreviewPsikolog extends StatefulWidget {
   const PreviewPsikolog({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<PreviewPsikolog> createState() => _PreviewPsikologState();
+}
+
+class _PreviewPsikologState extends State<PreviewPsikolog> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () => Provider.of<PsikologProvider>(context, listen: false)
+          .getPsikologList(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,33 +63,58 @@ class PreviewPsikolog extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        ListView(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            cardPsikolog(
-              context,
-              'Jefferey S.Psi, M.Psi',
-              'Psikolog Anak',
-              'Anak',
-              '7 Tahun',
-            ),
-            cardPsikolog(
-              context,
-              'Mark Lee S.Psi, M.Psi',
-              'Psikolog Klinis',
-              'Stress,Gangguan Kecemasan',
-              '7 Tahun',
-            ),
-            cardPsikolog(
-              context,
-              'Hendery Wijaya S.Psi, M.Psi',
-              'Psikolog Klinis',
-              'Anxiety',
-              '7 Tahun',
-            )
-          ],
-        )
+        // ListView(
+        //   shrinkWrap: true,
+        //   physics: NeverScrollableScrollPhysics(),
+        //   children: [
+        //     cardPsikolog(
+        //       context,
+        //       'Jefferey S.Psi, M.Psi',
+        //       'Psikolog Anak',
+        //       'Anak',
+        //       '7 Tahun',
+        //     ),
+        //     cardPsikolog(
+        //       context,
+        //       'Mark Lee S.Psi, M.Psi',
+        //       'Psikolog Klinis',
+        //       'Stress,Gangguan Kecemasan',
+        //       '7 Tahun',
+        //     ),
+        //     cardPsikolog(
+        //       context,
+        //       'Hendery Wijaya S.Psi, M.Psi',
+        //       'Psikolog Klinis',
+        //       'Anxiety',
+        //       '7 Tahun',
+        //     )
+        //   ],
+        // )
+
+        Consumer<PsikologProvider>(
+          builder: (context, provPsikolog, child) {
+            if (provPsikolog.requestState == PsikologViewState.loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (provPsikolog.requestState == PsikologViewState.loaded) {
+              final psikolog = provPsikolog.listPsikolog;
+              return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 3,
+                  itemBuilder: ((context, index) {
+                    final psikologData = psikolog[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                      child: CardPsikolog(psikologData: psikologData),
+                    );
+                  }));
+            } else {
+              return Center(child: Text('Error'));
+            }
+          },
+        ),
       ],
     );
   }
@@ -85,25 +127,24 @@ class PreviewPsikolog extends StatelessWidget {
     String experience_year,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-      child: GestureDetector(
-        onTap: () {
-          showModalBottomSheet(
-            context: context,
-            // constraints: BoxConstraints(maxHeight: double.infinity),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
+        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+        child: GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+                context: context,
+                // constraints: BoxConstraints(maxHeight: double.infinity),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                builder: (context) => PsikologPage());
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            builder: (context) => DetailPsikolog(),
-          );
-        },
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: ListTile(
+            child: ListTile(
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Container(
@@ -135,33 +176,8 @@ class PreviewPsikolog extends StatelessWidget {
                   )),
                 ],
               ),
-              trailing: Container(child: consultButton(context))),
-        ),
-      ),
-    );
-  }
-
-  ElevatedButton consultButton(BuildContext context) {
-    return ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(
-              Color.fromRGBO(180, 235, 237, 1)),
-          shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
-        ),
-        onPressed: () {
-          Navigator.of(context).push(
-            MyFadeRoute(
-              route: ConsultationPage(
-                  // title: 'Consultation Form',
-                  ),
+              // trailing: ConsultButton(psikologDataId: psikolo,)),
             ),
-          );
-        },
-        child: Text(
-          'Consult',
-          style: TextStyle(
-            color: Colors.black.withOpacity(.8),
           ),
         ));
   }

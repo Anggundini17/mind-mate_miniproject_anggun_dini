@@ -45,6 +45,7 @@ dependencies:
   sqflite: ^2.2.8
   path: ^1.8.2
   http: ^0.13.5
+  date_time_picker: ^2.1.0
   # get: ^4.6.5
   # syncfusion_flutter_datepicker: ^21.1.41
 

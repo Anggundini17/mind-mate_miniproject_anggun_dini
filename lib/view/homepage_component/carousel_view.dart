@@ -1,9 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mind_mate_app/view_model/carouselpict_provider.dart';
-import 'package:path/path.dart';
 
-import 'carousel.dart';
 import 'package:provider/provider.dart';
 
 class CarouselView extends StatelessWidget {

@@ -17,7 +17,7 @@ class _MyCustomUIState extends State<MyCustomUI>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
 
     _animation = Tween<double>(begin: 0, end: 1)
@@ -39,13 +39,13 @@ class _MyCustomUIState extends State<MyCustomUI>
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(title: Text('Article')),
-      backgroundColor: Color(0xffF5F5F5),
+      appBar: AppBar(title: const Text('Article')),
+      backgroundColor: const Color(0xffF5F5F5),
       body: Stack(
         children: [
           ListView(
-            physics:
-                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()),
             children: [
               // searchBar(),
               Padding(
@@ -64,56 +64,56 @@ class _MyCustomUIState extends State<MyCustomUI>
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo(),
+                  const RouteWhereYouGo(),
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo()),
+                  const RouteWhereYouGo()),
               groupOfCards(
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo(),
+                  const RouteWhereYouGo(),
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo()),
+                  const RouteWhereYouGo()),
               groupOfCards(
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo(),
+                  const RouteWhereYouGo(),
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo()),
+                  const RouteWhereYouGo()),
               groupOfCards(
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo(),
+                  const RouteWhereYouGo(),
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo()),
+                  const RouteWhereYouGo()),
               groupOfCards(
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo(),
+                  const RouteWhereYouGo(),
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo()),
+                  const RouteWhereYouGo()),
               groupOfCards(
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo(),
+                  const RouteWhereYouGo(),
                   'Example Text',
                   'Example Text',
                   'assets/images/file_name.png',
-                  RouteWhereYouGo()),
+                  const RouteWhereYouGo()),
             ],
           ),
           settingIcon(),
@@ -139,7 +139,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                 BoxShadow(
                   color: Colors.black.withOpacity(.1),
                   blurRadius: 30,
-                  offset: Offset(0, 15),
+                  offset: const Offset(0, 15),
                 ),
               ],
               shape: BoxShape.circle,
@@ -153,7 +153,7 @@ class _MyCustomUIState extends State<MyCustomUI>
               onPressed: () {
                 Navigator.of(context).push(
                   MyFadeRoute(
-                    route: RouteWhereYouGo(),
+                    route: const RouteWhereYouGo(),
                   ),
                 );
               },
@@ -183,7 +183,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                 BoxShadow(
                   color: Colors.black.withOpacity(.1),
                   blurRadius: 30,
-                  offset: Offset(0, 15),
+                  offset: const Offset(0, 15),
                 ),
               ],
             ),
@@ -268,7 +268,8 @@ class _MyCustomUIState extends State<MyCustomUI>
           child: Column(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(20)),
                 // width: _w / 2.36,
                 // height: _w / 2.6,
                 // decoration: BoxDecoration(
@@ -339,7 +340,7 @@ class MyFadeRoute extends PageRouteBuilder {
   final Widget route;
   MyFadeRoute({required this.route})
       : super(
-            transitionDuration: Duration(milliseconds: 500),
+            transitionDuration: const Duration(milliseconds: 500),
             transitionsBuilder: (BuildContext context,
                 Animation<double> animation,
                 Animation<double> secAnimation,
@@ -358,6 +359,8 @@ class MyFadeRoute extends PageRouteBuilder {
 }
 
 class RouteWhereYouGo extends StatelessWidget {
+  const RouteWhereYouGo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -391,7 +394,7 @@ class FadeRoute extends PageRouteBuilder {
     required this.route,
     required this.settings,
   }) : super(
-            transitionDuration: Duration(milliseconds: 200),
+            transitionDuration: const Duration(milliseconds: 200),
             settings: settings,
             pageBuilder: (
               BuildContext context,

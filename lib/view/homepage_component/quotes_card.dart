@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mind_mate_app/view/psikolog/psikolog_page.dart';
+import 'package:mind_mate_app/view/test_history.dart';
 
-import '../detail_psikolog.dart';
+import '../psikolog/detail_psikolog.dart';
+import '../test_card.dart';
 
 class QuotesCard extends StatelessWidget {
   const QuotesCard({
@@ -11,14 +14,22 @@ class QuotesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
-          context: context,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(20),
-            ),
+        // showModalBottomSheet(
+        //   context: context,
+        //   shape: const RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(
+        //       top: Radius.circular(20),
+        //     ),
+        //   ),
+        //   builder: (context) => const PsikologPage(),
+        // );
+        Navigator.of(context).push(
+          MyFadeRoute(
+            route: History(
+                // title: 'Consultation Form',
+                // getPsikolog: psikologDataId,
+                ),
           ),
-          builder: (context) => const DetailPsikolog(),
         );
       },
       child: Card(
