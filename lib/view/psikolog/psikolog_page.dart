@@ -4,8 +4,6 @@ import 'package:mind_mate_app/models/psikolog.dart';
 import 'package:mind_mate_app/view_model/psikolog_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../view_model/db_manager_provider.dart';
-
 import '../widget/animation.dart';
 import 'consult.dart';
 import 'detail_psikolog.dart';

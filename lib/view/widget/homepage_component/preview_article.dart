@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../../view_model/article_provider.dart';
 import '../../article/article_page.dart';
-import '../../article/detail_article.dart';
 import '../animation.dart';
 
 class PreviewArticle extends StatefulWidget {

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mind_mate_app/models/psikolog.dart';
-import 'package:provider/provider.dart';
-
-import '../../view_model/psikolog_provider.dart';
-
 import '../widget/animation.dart';
 import 'consult.dart';
 

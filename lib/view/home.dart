@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate_app/view/psikolog/consult.dart';
 import 'package:mind_mate_app/view/schedule_history.dart';
 import './widget/animation.dart';
-
 import 'package:mind_mate_app/view/widget/homepage_component/carousel_view.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:mind_mate_app/view_model/article_provider.dart';
-// import 'package:provider/provider.dart';
-
-import '../view_model/psikolog_provider.dart';
 import 'widget/homepage_component/preview_article.dart';
 import 'widget/homepage_component/preview_psikolog.dart';
-// import 'homepage_component/quotes_card.dart';
-import 'widget/homepage_component/quotes_card.dart';
 import 'widget/homepage_component/top.dart';
 
 class MyHomePage extends StatefulWidget {
