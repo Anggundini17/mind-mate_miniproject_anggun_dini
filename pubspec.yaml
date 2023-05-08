@@ -56,7 +56,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter_native_splash:
-  image: assets/test.png
+  image: assets/mindmate_logo.png
   color: "#eefcfc"
   android: true
   ios: true

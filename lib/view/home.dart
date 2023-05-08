@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mind_mate_app/view/psikolog/consult.dart';
 import 'package:mind_mate_app/view/schedule_history.dart';
-import 'package:mind_mate_app/view/test_card.dart';
+import './widget/animation.dart';
+
 import 'package:mind_mate_app/view/widget/homepage_component/carousel_view.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,10 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               const TopWidget(),
               CarouselView(),
-              const SizedBox(
-                height: 25,
-              ),
-              // const QuotesCard(),
               const PreviewPsikolog(),
               const PreviewArticle(),
             ],
