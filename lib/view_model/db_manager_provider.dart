@@ -9,34 +9,12 @@ class DatabaseManagerProvider with ChangeNotifier {
 
   List<Consultation> get getConsultationData => _getConsultationData;
 
-  // final DateTime _selectedDate = DateTime.now();
-  // DateTime get selectedDate => _selectedDate;
-
-  // final List<String> _selectedTime = [
-  //   '09:00',
-  //   '09:45',
-  //   '10:00',
-  //   '10:45',
-  //   '11:00',
-  //   '13:00',
-  //   '13:45',
-  //   '14:00',
-  //   '14:45',
-  //   '15:00',
-  //   '15:45',
-  //   '16:00',
-  // ];
-
-  // List<String> get selectedTime => _selectedTime;
-
   DatabaseManagerProvider() {
     _dbHelper = DatabaseHelper();
     getAllConsultationData();
   }
 
   void getAllConsultationData() async {
-    print('Test maniez');
-
     _getConsultationData = await _dbHelper.readConsultation();
     notifyListeners();
   }
@@ -48,9 +26,14 @@ class DatabaseManagerProvider with ChangeNotifier {
   }
 
   void updateConsultation(Consultation updateConsultation) async {
-    await _dbHelper.updateConsultation(updateConsultation);
-    getAllConsultationData();
-    // notifyListeners();
+    try {
+      await _dbHelper.updateConsultation(updateConsultation);
+
+      getAllConsultationData();
+      notifyListeners();
+    } catch (e) {
+      print('Tidak Masuk');
+    }
   }
 
   Future<Consultation> getConsultationById(int id) async {

@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate_app/models/psikolog.dart';
-
-import 'package:mind_mate_app/view/login_page.dart';
 
 import 'package:mind_mate_app/view_model/article_provider.dart';
 import 'package:mind_mate_app/view_model/carouselpict_provider.dart';
 import 'package:mind_mate_app/view_model/db_manager_provider.dart';
 import 'package:mind_mate_app/view_model/psikolog_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'view/home.dart';
-import 'view/homepage_component/carousel_view.dart';
-import 'view/test_card.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // ignore: deprecated_member_use
+  // FlutterNativeSplash.removeAfter(initilization);
+
+  runApp(const MindMateApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// Future initilization(BuildContext? context) async {
+//   await Future.delayed(Duration(seconds: 1));
+// }
+
+class MindMateApp extends StatelessWidget {
+  const MindMateApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -50,27 +54,8 @@ class MyApp extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18)),
-
-          // iconTheme: IconThemeData(color: Colors.black),
-          // // primarySwatch: Color.fromRGBO(239, 252, 252, 1),
-          // primaryColor: Color.fromRGBO(239, 252, 252, 1),
         ),
-        // initialRoute: '/',
-        // routes: {
-        //   // '/': (context) => LoginPage(),
-        //   '/': (context) => MyHomePage(),
-        //   '/psikologListPage': (context) => PsikologPage(),
-        //   '/detailPsikolog': (context) => DetailPsikolog(),
-        //   '/consultPsikolog': (context) => ConsultationPage(),
-        //   '/articleListPage': (context) => ArticlePage(),
-        //   '/detailArticle': (context) => DetailArticlePage(),
-        // },
-
         home: const MyHomePage(),
-        // home: const LoginPage(),
-
-        // home: MyCustomUI(),
-        // home: HomePage(),
       ),
     );
   }

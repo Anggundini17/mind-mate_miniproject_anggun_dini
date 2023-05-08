@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:mind_mate_app/view/homepage_component/carousel_view.dart';
+import 'package:mind_mate_app/view/psikolog/consult.dart';
+import 'package:mind_mate_app/view/schedule_history.dart';
+import 'package:mind_mate_app/view/test_card.dart';
+import 'package:mind_mate_app/view/widget/homepage_component/carousel_view.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:mind_mate_app/view_model/article_provider.dart';
 // import 'package:provider/provider.dart';
 
 import '../view_model/psikolog_provider.dart';
-import 'homepage_component/preview_article.dart';
-import 'homepage_component/preview_psikolog.dart';
+import 'widget/homepage_component/preview_article.dart';
+import 'widget/homepage_component/preview_psikolog.dart';
 // import 'homepage_component/quotes_card.dart';
-import 'homepage_component/quotes_card.dart';
-import 'homepage_component/top.dart';
+import 'widget/homepage_component/quotes_card.dart';
+import 'widget/homepage_component/top.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -19,16 +23,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   Future.microtask(
-  //     () => Provider.of<PsikologProvider>(context, listen: false)
-  //         .fetchSinglePsikolog(1),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               const TopWidget(),
               CarouselView(),
-              const QuotesCard(),
+              const SizedBox(
+                height: 25,
+              ),
+              // const QuotesCard(),
               const PreviewPsikolog(),
               const PreviewArticle(),
             ],
@@ -49,13 +46,26 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromRGBO(239, 252, 252, 1),
-          unselectedItemColor: Colors.grey,
-          selectedItemColor: Colors.green,
+          onTap: (value) {
+            if (value == 1) {
+              Navigator.of(context).push(
+                MyFadeRoute(
+                  route: const HistoryPage(
+                      // title: 'Consultation Form',
+
+                      ),
+                ),
+              );
+            }
+          },
+          backgroundColor: const Color.fromRGBO(180, 235, 237, 1),
+          unselectedItemColor: Colors.blueGrey[400],
+          selectedItemColor: Color.fromRGBO(35, 75, 86, 1),
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'Settings')
+                icon: Icon(Icons.calendar_month_sharp),
+                label: 'Schedule History')
           ]),
     );
   }

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class TopWidget extends StatelessWidget {
+class TopWidget extends StatefulWidget {
   const TopWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<TopWidget> createState() => _TopWidgetState();
+}
+
+class _TopWidgetState extends State<TopWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +28,7 @@ class TopWidget extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Padding(
                   padding: EdgeInsets.only(
                     left: 25.0,
@@ -33,13 +39,16 @@ class TopWidget extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 7, 20, 8)),
+                        color: Color.fromRGBO(35, 75, 86, 1)),
                   )),
               Padding(
                 padding: EdgeInsets.only(left: 25.0, top: 5.0),
                 child: Text(
                   'How are you today?',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      color: Color.fromRGBO(35, 75, 86, 1),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
               Padding(
@@ -50,6 +59,7 @@ class TopWidget extends StatelessWidget {
                   child: Text(
                     'Hope your day is always shining like the sun',
                     style: TextStyle(
+                      color: Color.fromRGBO(35, 75, 86, 1),
                       fontSize: 18,
                     ),
                   ),
@@ -64,7 +74,7 @@ class TopWidget extends StatelessWidget {
             //   size: 25,
             // ),
             child: CircleAvatar(
-              radius: 30,
+              radius: 40,
               backgroundImage: NetworkImage(
                   'https://f.ptcdn.info/298/073/000/qs7t6ibhscUkbPBmH8t-o.jpg'),
             ),

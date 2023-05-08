@@ -32,9 +32,5 @@ class PsikologApi {
     final Psikolog psikolog = Psikolog.fromJson(body);
     print(psikolog.name);
     return psikolog;
-    // if (response.statusCode == 200) {
-    // } else {
-    //   throw "Can't get the data";
-    // }
   }
 }

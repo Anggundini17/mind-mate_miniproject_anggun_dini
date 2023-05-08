@@ -5,7 +5,8 @@ import 'package:mind_mate_app/view_model/psikolog_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_model/db_manager_provider.dart';
-import '../test_card.dart';
+
+import '../widget/animation.dart';
 import 'consult.dart';
 import 'detail_psikolog.dart';
 
@@ -125,7 +126,7 @@ class CardPsikolog extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          backgroundColor: Color.fromRGBO(239, 252, 252, 1),
+          backgroundColor: const Color.fromRGBO(239, 252, 252, 1),
           // constraints: BoxConstraints(maxHeight: double.infinity),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -137,41 +138,54 @@ class CardPsikolog extends StatelessWidget {
           ),
         );
       },
-      child: Card(
-        // color: Color.fromRGBO(215, 245, 246, 1),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        child: ListTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              alignment: Alignment.center,
-              constraints: const BoxConstraints(maxWidth: 50, maxHeight: 150),
-              child: Image.network(
-                  'https://f.ptcdn.info/298/073/000/qs7t6ibhscUkbPBmH8t-o.jpg'),
+      child: SizedBox(
+        height: 150,
+        child: Card(
+          // color: Color.fromRGBO(215, 245, 246, 1),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          child: ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: SizedBox(
+                // height: 100,
+                width: MediaQuery.of(context).size.width * 0.125,
+                child: Image.network(
+                  // 'https://f.ptcdn.info/298/073/000/qs7t6ibhscUkbPBmH8t-o.jpg',
+                  psikologData.avatar,
+                  fit: BoxFit.cover,
+                  // scale: 25.0,
+                ),
+              ),
             ),
-          ),
-          title: Text(psikologData.name),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(psikologData.specialist),
-              Text(psikologData.expert),
-              Chip(
-                  label: Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  const Icon(Icons.work),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(psikologData.timeExperience),
-                ],
-              )),
-            ],
-          ),
-          trailing: ConsultButton(
-            psikologDataId: psikologData,
+            title: Text(
+              psikologData.name,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(psikologData.specialist),
+                Text(
+                  psikologData.expert,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Chip(
+                    label: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    const Icon(Icons.work),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(psikologData.timeExperience),
+                  ],
+                )),
+              ],
+            ),
+            trailing: ConsultButton(
+              psikologDataId: psikologData,
+            ),
           ),
         ),
       ),
@@ -192,7 +206,7 @@ class ConsultButton extends StatelessWidget {
     return ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
-              const Color.fromRGBO(180, 235, 237, 1)),
+              const Color.fromRGBO(37, 109, 121, 1)),
           shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
         ),
@@ -202,16 +216,17 @@ class ConsultButton extends StatelessWidget {
             MyFadeRoute(
               route: ConsultationPage(
                 // title: 'Consultation Form',
+                pageStatus: PageStatus.addNew,
                 getPsikolog: psikologDataId,
               ),
             ),
           );
         },
-        child: Text(
+        child: const Text(
           'Consult',
           style: TextStyle(
-            color: Colors.black.withOpacity(.8),
-          ),
+              // color: Colors.black.withOpacity(.8),
+              ),
         ));
   }
 }

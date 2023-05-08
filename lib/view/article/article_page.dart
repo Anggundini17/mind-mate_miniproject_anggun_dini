@@ -4,7 +4,7 @@ import 'package:mind_mate_app/view/article/detail_article.dart';
 import 'package:mind_mate_app/view_model/article_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../test_card.dart';
+import '../widget/animation.dart';
 
 class ArticlePage extends StatefulWidget {
   const ArticlePage({super.key});
@@ -55,11 +55,12 @@ class _ArticlePageState extends State<ArticlePage>
       ),
       body: SingleChildScrollView(
           child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.all(25.0),
             child: Text(
-              'Breaking the Stigma: Talking About Mental Health',
+              'Talking About Mental Health',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
@@ -133,15 +134,23 @@ class ArticleCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              articleData.title,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: Text(
+                  articleData.title,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(articleData.createdAt.toIso8601String()),
+                  Text('Medically reported by ${articleData.author}')
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(articleData.contentPreview),
           ),
         ]),
       ),

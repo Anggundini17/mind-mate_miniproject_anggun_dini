@@ -46,12 +46,21 @@ dependencies:
   path: ^1.8.2
   http: ^0.13.5
   date_time_picker: ^2.1.0
+  shared_preferences: ^2.1.0
+  email_validator: ^2.1.17
+  flutter_native_splash: ^2.2.18
   # get: ^4.6.5
   # syncfusion_flutter_datepicker: ^21.1.41
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_native_splash:
+  image: assets/test.png
+  color: "#eefcfc"
+  android: true
+  ios: true
+  web: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

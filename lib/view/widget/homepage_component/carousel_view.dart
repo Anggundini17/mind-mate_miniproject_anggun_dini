@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:mind_mate_app/view_model/carouselpict_provider.dart';
 
 import 'package:provider/provider.dart';
@@ -16,7 +17,7 @@ class CarouselView extends StatelessWidget {
           child: Text(
             "Find Your Support System on MindMate",
             style: TextStyle(
-              // color: Colors.green[700],
+              color: Color.fromRGBO(37, 109, 121, 1),
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
@@ -39,10 +40,6 @@ class CarouselView extends StatelessWidget {
             enlargeCenterPage: true,
           ),
         ),
-        // SizedBox(
-        //   height: 30,
-        // ),
-        // CarouselWithDotsPage(imgList: imgList),
       ],
     );
   }

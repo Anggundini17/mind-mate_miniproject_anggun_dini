@@ -41,9 +41,8 @@ class PsikologProvider with ChangeNotifier {
   }
 
   Future<void> fetchSinglePsikolog(int id) async {
-    print('Call');
-    // _requestState = PsikologViewState.loading;
-    // notifyListeners();
+    _requestState = PsikologViewState.loading;
+    notifyListeners();
     try {
       final result = await PsikologApi.getPsikologById(id);
       _singlePsikolog = result;

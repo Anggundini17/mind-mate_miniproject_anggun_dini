@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mind_mate_app/models/api/api_article.dart';
+
 import '../models/api/api_article_http.dart';
 
 import '../models/article.dart';

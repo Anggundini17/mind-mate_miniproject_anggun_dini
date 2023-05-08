@@ -15,10 +15,6 @@ class DatabaseHelper {
   Future<Database> get database async {
     _database = await _initializeDb();
     return _database;
-    // if (_database == null) {
-    //   _database == await _initializeDb();
-    // }
-    // return _database;
   }
 
   final String _tableName = 'consultation';
@@ -57,6 +53,8 @@ class DatabaseHelper {
   }
 
   Future<void> updateConsultation(Consultation consultation) async {
+    print('Ini dalam update dalam database');
+    print(consultation.id);
     final db = await database;
     await db.update(
       _tableName,
