@@ -21,16 +21,4 @@ class PsikologApi {
       throw "Can't get the data";
     }
   }
-
-  static Future<Psikolog> getPsikologById(int id) async {
-    final response = await http.get(Uri.parse('$baseUrl/psikolog?id=$id'));
-    print('oke');
-    final dynamic body = jsonDecode(response.body);
-    print("Body: $body");
-    final List<Psikolog> psikologs =
-        body.map((e) => Psikolog.fromJson(e)).toList();
-    final Psikolog psikolog = Psikolog.fromJson(body);
-    print(psikolog.name);
-    return psikolog;
-  }
 }

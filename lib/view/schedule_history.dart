@@ -16,7 +16,6 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.microtask(
       () => Provider.of<DatabaseManagerProvider>(context, listen: false)

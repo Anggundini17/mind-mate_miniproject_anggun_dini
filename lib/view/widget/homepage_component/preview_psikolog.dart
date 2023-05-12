@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:mind_mate_app/view_model/psikolog_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../../psikolog/detail_psikolog.dart';
 import '../../psikolog/psikolog_page.dart';
 import '../animation.dart';
 

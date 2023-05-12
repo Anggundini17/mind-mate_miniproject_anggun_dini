@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class TopWidget extends StatefulWidget {
   const TopWidget({
@@ -75,8 +74,9 @@ class _TopWidgetState extends State<TopWidget> {
             // ),
             child: CircleAvatar(
               radius: 40,
-              backgroundImage: NetworkImage(
-                  'https://f.ptcdn.info/298/073/000/qs7t6ibhscUkbPBmH8t-o.jpg'),
+              // backgroundImage: NetworkImage(
+              //     'https://f.ptcdn.info/298/073/000/qs7t6ibhscUkbPBmH8t-o.jpg'),
+              backgroundImage: AssetImage('assets/profile.jpg'),
             ),
           )
         ],

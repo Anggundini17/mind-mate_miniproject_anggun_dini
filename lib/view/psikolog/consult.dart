@@ -28,7 +28,6 @@ class ConsultationPage extends StatefulWidget {
 class _ConsultationPageState extends State<ConsultationPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // loadedData();
 
@@ -46,11 +45,9 @@ class _ConsultationPageState extends State<ConsultationPage> {
     }
   }
 
-  final _formKey = GlobalKey<FormState>();
   DatePickerController _date = DatePickerController();
   final TextEditingController _startTimeController = TextEditingController();
   final TextEditingController _complainment = TextEditingController();
-  final TextEditingController _endTimeController = TextEditingController();
   DateTime initialSelectedDate = DateTime.now();
 
   bool isEditing = false;

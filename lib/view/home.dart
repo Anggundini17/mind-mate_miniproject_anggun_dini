@@ -37,10 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (value == 1) {
               Navigator.of(context).push(
                 MyFadeRoute(
-                  route: const HistoryPage(
-                      // title: 'Consultation Form',
-
-                      ),
+                  route: const HistoryPage(),
                 ),
               );
             }

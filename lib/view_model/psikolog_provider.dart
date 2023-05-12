@@ -39,20 +39,4 @@ class PsikologProvider with ChangeNotifier {
       notifyListeners();
     }
   }
-
-  Future<void> fetchSinglePsikolog(int id) async {
-    _requestState = PsikologViewState.loading;
-    notifyListeners();
-    try {
-      final result = await PsikologApi.getPsikologById(id);
-      _singlePsikolog = result;
-      print('Result: $result');
-      // _requestState = PsikologViewState.loaded;
-      notifyListeners();
-    } catch (e) {
-      _requestState = PsikologViewState.error;
-      _message = 'Error: $e';
-      notifyListeners();
-    }
-  }
 }

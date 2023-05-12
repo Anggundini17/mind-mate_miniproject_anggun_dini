@@ -12,14 +12,14 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ignore: deprecated_member_use
-  // FlutterNativeSplash.removeAfter(initilization);
+  FlutterNativeSplash.removeAfter(initilization);
 
   runApp(const MindMateApp());
 }
 
-// Future initilization(BuildContext? context) async {
-//   await Future.delayed(Duration(seconds: 1));
-// }
+Future initilization(BuildContext? context) async {
+  await Future.delayed(Duration(seconds: 1));
+}
 
 class MindMateApp extends StatelessWidget {
   const MindMateApp({super.key});
