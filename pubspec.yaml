@@ -55,7 +55,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  image_test_utils: ^1.0.0
+  # image_test_utils: ^1.0.0
 flutter_native_splash:
   image: assets/mindmate_logo_update3.png
   color: "#eefcfc"

@@ -16,7 +16,6 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -30,12 +29,6 @@ class _ArticlePageState extends State<ArticlePage>
       vsync: this,
       duration: const Duration(seconds: 1),
     );
-
-    _animation = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut))
-      ..addListener(() {
-        setState(() {});
-      });
 
     _controller.forward();
   }

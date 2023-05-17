@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mind_mate_app">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="mind_mate_app"
+        android:label="MindMate"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

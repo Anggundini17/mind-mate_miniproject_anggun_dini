@@ -18,7 +18,6 @@ class PreviewArticle extends StatefulWidget {
 class _PreviewArticleState extends State<PreviewArticle>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -31,12 +30,6 @@ class _PreviewArticleState extends State<PreviewArticle>
       vsync: this,
       duration: Duration(seconds: 1),
     );
-
-    _animation = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut))
-      ..addListener(() {
-        setState(() {});
-      });
 
     _controller.forward();
   }
